@@ -1,0 +1,13 @@
+#logo {
+    height: 100%;
+    margin: 0;
+    font-weight: 300;
+    font-size: 3rem;
+    display: inline-block;
+    color: white;
+    vertical-align:middle;
+    text-align: center;
+    display: inline-flex;
+    text-decoration: none;
+    margin: 4px 10px;    
+}

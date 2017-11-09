@@ -1,0 +1,53 @@
+#main_layout {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    width: 100%;
+}
+.section {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    border: 1px solid #00bfa5;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.v-section {
+    border: 2px solid #00bfa5;
+}
+
+#menubar {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    background: #1de9b6;
+    overflow: overlay;
+}
+
+#menubar::-webkit-scrollbar { 
+    display: none; 
+}
+
+#sidebox {
+    width: 25%;
+    height: 90%;
+}
+
+#mainbox {
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+    height: 90%;
+}
+
+#editor {
+    width: 100%;
+    height: 60%;
+}
+
+#console {
+    width: 100%;
+    height: 40%;
+}
