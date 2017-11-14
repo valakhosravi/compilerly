@@ -10,7 +10,7 @@ body{
 .mi_header {
     background: #1de9b6;
     border-bottom: 2px solid #00bfa5;
-    padding-left: 14px;
+    padding-left: 12px;
     height: calc(100vh / 20);
 }
 
@@ -20,4 +20,8 @@ body{
     text-align: center;
     color: white;
     font-size: 15pt;
+}
+
+.mi-input {
+    /* padding-left: 8px !important; */
 }

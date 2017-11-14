@@ -1,0 +1,62 @@
+#table-parent {
+    position: fixed;
+    display: block;
+    width: 70%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 3;
+}
+
+#block {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#hide-btn {
+    position: absolute;
+    right: 14px;
+    top: 10px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+.header {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    background: #1de9b6;
+    overflow: overlay;
+    padding: 6px 10px;  
+}
+
+.header::-webkit-scrollbar { 
+    display: none; 
+}
+
+
+.title {
+    height: 100%;
+    margin: 0;
+    font-size: 3rem;
+    display: inline-block;
+    color: white;
+    vertical-align:middle;
+    text-align: center;
+    display: inline-flex;
+    text-decoration: none;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #1de9b6;
+}

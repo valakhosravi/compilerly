@@ -1,13 +1,14 @@
 #logo {
     height: 100%;
     margin: 0;
-    font-weight: 300;
     font-size: 3rem;
     display: inline-block;
-    color: white;
+    color: #1de9b6;
     vertical-align:middle;
     text-align: center;
     display: inline-flex;
     text-decoration: none;
-    margin: 4px 10px;    
+    margin: 6px 10px;  
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;  
 }

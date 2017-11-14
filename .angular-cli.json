@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../node_modules/materialize-css/dist/css/materialize.min.css"
+        "../node_modules/materialize-css/dist/css/materialize.min.css",
+        "../node_modules/material-icons/css/material-icons.min.css"
       ],
       "scripts": [
         "../node_modules/materialize-css/dist/js/materialize.min.js"

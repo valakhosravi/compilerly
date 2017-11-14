@@ -1,3 +1,10 @@
 <div class="mi_header">
   <label>Grammar</label>
 </div>
+<a class="waves-effect waves-light btn" id="side-bottom" (click)="showParseTable()">
+  <i class="mi mi-expand-more right"></i>
+  Parse Table
+</a>
+<div style="padding: 4px 10px 4px 10px;overflow-y: scroll;height:calc(100% - calc(100vh / 20))">
+    <app-grammar-item #cmp *ngFor="let rule of rules" [rule]="rule"></app-grammar-item>
+</div>

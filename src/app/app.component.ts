@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  parseTableDisplay: Boolean = false;
+
+  showParseTable(e) {
+    this.parseTableDisplay = true;
+  }
+
+  hideParseTable(e) {
+    this.parseTableDisplay = false;
+  }
 
 }

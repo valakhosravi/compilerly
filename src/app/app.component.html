@@ -3,7 +3,8 @@
     <app-toolbar></app-toolbar>    
   </div>
   <div id="sidebox" class="section">
-    <app-sidebox></app-sidebox>
+    <app-sidebox (parseTableStatus)="showParseTable($event)"></app-sidebox>
+    <app-parse-table [display]="parseTableDisplay" (parseTableStatus)="hideParseTable($event)"></app-parse-table>
   </div>
   <div id="mainbox">
     <div id="editor" class="section">

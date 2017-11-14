@@ -1,0 +1,21 @@
+#side-bottom {
+    background: #1de9b6;
+    margin-left: -25px;
+    position: fixed;
+    top: calc(50% + 95px);
+    left: 0;
+    -ms-transform: rotate(-90deg); /* IE 9 */
+    -webkit-transform: rotate(-90deg); /* Safari */
+    transform: rotate(-90deg); /* Standard syntax */
+    transform-origin:0% 0%;
+    -ms-transform-origin:0% 0%;
+    -webkit-transform-origin:0% 0%;
+}
+
+#side-bottom:active {
+    background: #64ffda;
+}
+
+#side-bottom:hover {
+    margin-left: 0px;
+}
