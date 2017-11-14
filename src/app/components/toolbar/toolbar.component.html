@@ -1,3 +1,14 @@
 <h2 id="logo" class="shake">
   Compilerly
 </h2>
+<a class="waves-effect waves-teal btn-flat" id="help-btn" (click)="showHelp()">Help</a>
+
+<div class="modal modal-fixed-footer" [style.display]="helpDisplay">
+  <div class="modal-content">
+    <h4>Help</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat " (click)="hideHelp()">OK</a>
+  </div>
+</div>

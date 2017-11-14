@@ -8,9 +8,18 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
+  helpDisplay: String = 'none';
   constructor() { }
 
   ngOnInit() {
+  }
+
+  showHelp() {
+    this.helpDisplay = 'block';
+  }
+
+  hideHelp() {
+    this.helpDisplay = 'none';
   }
 
 }
