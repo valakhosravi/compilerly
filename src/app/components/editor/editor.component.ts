@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-editor',
@@ -6,11 +6,17 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./editor.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class EditorComponent implements OnInit {
-
+export class EditorComponent implements OnInit, AfterViewInit {
+  @ViewChild('ep') editorParent;
+  text: String = '';
+  editorHeight = 312;
   constructor() { }
 
   ngOnInit() {
   }
 
+  ngAfterViewInit(): void {
+    console.log(this.editorParent);
+    this.editorHeight = this.editorParent.nativeElement.offsetHeight - 20;
+  }
 }

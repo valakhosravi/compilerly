@@ -11,6 +11,8 @@ import { ConsoleComponent } from './components/console/console.component';
 import { GrammarItemComponent } from './components/sidebox/grammar-item/grammar-item.component';
 import { ParseTableComponent } from './components/parse-table/parse-table.component';
 
+import { AceEditorModule } from 'ng2-ace-editor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,8 @@ import { ParseTableComponent } from './components/parse-table/parse-table.compon
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AceEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

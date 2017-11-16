@@ -24,6 +24,9 @@
         "../node_modules/material-icons/css/material-icons.min.css"
       ],
       "scripts": [
+        "../node_modules/ace-builds/src-min/ace.js",
+        "../node_modules/ace-builds/src-min/theme-xcode.js",
+        "../node_modules/ace-builds/src-min/mode-c_cpp.js",
         "../node_modules/materialize-css/dist/js/materialize.min.js"
       ],
       "environmentSource": "environments/environment.ts",
