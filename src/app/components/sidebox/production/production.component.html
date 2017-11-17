@@ -2,17 +2,17 @@
 <table>
   <tbody>
     <tr>
-      <td style="padding-bottom: 38px;">
-        <b>{{rule.index}}</b>
+      <td>
+        <b>{{production.index}}</b>
       </td>
       <td>
-        <input type="text" class="mi-input">
+        <input [(ngModel)]="production.left" type="text" class="mi-input" style="text-transform:uppercase" />
       </td>
       <td>
         <i class="mi mi-arrow-forward" style="margin-left: 2px !important;"></i>
       </td>
       <td>
-        <input type="text" class="mi-input">
+        <input [(ngModel)]="production.right" type="text" class="mi-input" />
       </td>
     </tr>
   </tbody>

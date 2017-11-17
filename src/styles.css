@@ -9,8 +9,8 @@ body{
 
 .mi_header {
     background: #1de9b6;
-    border-bottom: 2px solid #00bfa5;
-    padding-left: 12px;
+    border-bottom: 6px solid #00bfa5;
+    padding-left: 16px;
     height: calc(100vh / 20);
 }
 
@@ -23,5 +23,77 @@ body{
 }
 
 .mi-input {
-    /* padding-left: 8px !important; */
+    margin: 0 !important;
+}
+
+#main-loader {
+    width: 20vh;
+    height: 20vh;
+    border-radius: 50%;
+    /* background: #1de9b6;  */
+    background: white; 
+    border: 6px solid white;
+    border-top: 6px solid #00bfa5;
+    position: absolute;
+    vertical-align: middle;
+    align-items: center;
+    top: 40vh;
+    left: calc(50% - 10vh);
+    animation: rotation 2s infinite linear;
+    -webkit-animation: rotation 2s infinite linear;
+}
+
+
+@-webkit-keyframes rotation {
+    from {
+            -webkit-transform: rotate(0deg);
+    }
+    to {
+            -webkit-transform: rotate(359deg);
+    }
+}
+
+@keyframes rotation {
+    from {
+            -webkit-transform: rotate(0deg);
+    }
+    to {
+            -webkit-transform: rotate(359deg);
+    }
+}
+
+#main-loader > div {
+    width: 20vh;
+    height: 20vh;
+    border-radius: 50%;
+    /* background: #1de9b6;  */
+    background: white; 
+    border: 6px solid white;
+    border-top: 6px solid #1de9b6;
+    position: absolute;
+    vertical-align: middle;
+    align-items: center;
+    /* top: 40vh; */
+    left: calc(50% - 10vh);
+    animation: rotation1 1s infinite linear;
+    -webkit-animation: rotation1 1s infinite linear;
+}
+
+
+@-webkit-keyframes rotation1 {
+    from {
+            -webkit-transform: rotate(0deg);
+    }
+    to {
+            -webkit-transform: rotate(359deg);
+    }
+}
+
+@keyframes rotation1 {
+    from {
+            -webkit-transform: rotate(0deg);
+    }
+    to {
+            -webkit-transform: rotate(359deg);
+    }
 }

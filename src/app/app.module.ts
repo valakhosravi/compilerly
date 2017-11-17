@@ -8,9 +8,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SideboxComponent } from './components/sidebox/sidebox.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { ConsoleComponent } from './components/console/console.component';
-import { GrammarItemComponent } from './components/sidebox/grammar-item/grammar-item.component';
+import { ProductionComponent } from './components/sidebox/production/production.component';
 import { ParseTableComponent } from './components/parse-table/parse-table.component';
-
+import { FormsModule } from '@angular/forms';
 import { AceEditorModule } from 'ng2-ace-editor';
 
 @NgModule({
@@ -20,10 +20,11 @@ import { AceEditorModule } from 'ng2-ace-editor';
     SideboxComponent,
     EditorComponent,
     ConsoleComponent,
-    GrammarItemComponent,
+    ProductionComponent,
     ParseTableComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AceEditorModule

@@ -1,5 +1,5 @@
-export class Rule {
-    index: Number;
-    variable: String;
-    production: String;
+export class Production {
+    index?: Number;
+    left: String;
+    right: String;
 }

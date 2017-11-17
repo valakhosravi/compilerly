@@ -6,5 +6,5 @@
   Parse Table
 </a>
 <div style="padding: 4px 10px 4px 10px;overflow-y: scroll;height:calc(100% - calc(100vh / 20))">
-    <app-grammar-item #cmp *ngFor="let rule of rules" [rule]="rule"></app-grammar-item>
+    <app-production #cmp *ngFor="let production of productions" [production]="production"></app-production>
 </div>

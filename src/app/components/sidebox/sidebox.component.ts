@@ -1,7 +1,7 @@
-import { GrammarItemComponent } from './grammar-item/grammar-item.component';
-import { Rule } from './../../classes/rule';
+import { ProductionComponent } from './production/production.component';
+import { Production } from './../../classes/rule';
 import { Component, OnInit, ViewEncapsulation, ViewChildren, QueryList, AfterViewInit, Output, EventEmitter } from '@angular/core';
-
+import { ArithmeticGrammar } from './test-grammars';
 @Component({
   selector: 'app-sidebox',
   templateUrl: './sidebox.component.html',
@@ -9,16 +9,20 @@ import { Component, OnInit, ViewEncapsulation, ViewChildren, QueryList, AfterVie
   encapsulation: ViewEncapsulation.None
 })
 export class SideboxComponent implements OnInit, AfterViewInit {
-  @ViewChildren('cmp') components: QueryList<GrammarItemComponent>;
+  @ViewChildren('cmp') components: QueryList<ProductionComponent>;
   @Output() parseTableStatus: EventEmitter<any> = new EventEmitter();
   counter = 1;
-  rules: Rule[] = [];
+  productions: Production[] = [];
 
   constructor() { }
 
   ngOnInit() {
-    for (let i = 0; i < 10; i++) {
-      this.add();
+    // for (let i = 0; i < 10; i++) {
+    //   this.add();
+    // }
+    this.productions = ArithmeticGrammar;
+    for (let i = 0; i < this.productions.length; i++) {
+      this.productions[i].index = i + 1;
     }
   }
 
@@ -27,10 +31,10 @@ export class SideboxComponent implements OnInit, AfterViewInit {
   }
 
   add() {
-    this.rules.push({
+    this.productions.push({
       index: this.counter,
-      variable: '',
-      production: '',
+      left: '-' + this.counter,
+      right: '+' + this.counter,
     });
     this.counter += 1;
   }
