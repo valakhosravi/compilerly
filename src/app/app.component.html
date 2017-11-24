@@ -4,7 +4,7 @@
   </div>
   <div id="sidebox" class="section">
     <app-sidebox (parseTableStatus)="showParseTable($event)" (postRHST)="getRHST($event)"></app-sidebox>
-    <app-parse-table [display]="parseTableDisplay" [RHST]="productions" (parseTableStatus)="hideParseTable($event)"></app-parse-table>
+    <app-parse-table [display]="parseTableDisplay" [inputGrammar]="productions" (parseTableStatus)="hideParseTable($event)"></app-parse-table>
   </div>
   <div id="mainbox">
     <div id="editor" class="section">

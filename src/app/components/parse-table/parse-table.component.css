@@ -1,7 +1,7 @@
 #table-parent {
     position: fixed;
     display: block;
-    width: 70%;
+    width: 80%;
     height: 100%;
     top: 0;
     left: 0;
@@ -60,4 +60,13 @@
     text-decoration: none;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #1de9b6;
+}
+
+.parse-table-cell {
+    margin: 0;
+    text-align: center;
+}
+#parse-table {
+    table-layout: fixed;
+    border-collapse: collapse;
 }

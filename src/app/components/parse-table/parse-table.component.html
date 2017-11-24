@@ -4,10 +4,21 @@
     <h2 class="title">
       Parse Table
       <a (click)="hideBlock()">
-          <i id="hide-btn" class="mi mi-chevron-left"></i>          
+        <i id="hide-btn" class="mi mi-chevron-left"></i>
       </a>
     </h2>
   </div>
-  <a href=""></a>
+  <!-- <a href=""></a> -->
+  <div style="height: 100%;overflow-y: scroll">
+    <table id="parse-table">
+      <tbody>
+        <tr *ngFor="let j of parseTable">
+          <td class="parse-table-cell" *ngFor="let i of j">
+            {{i}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 <a id="block" [style.display]="displayStyle" (click)="hideBlock()"></a>

@@ -22,7 +22,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class ParseTableComponent implements OnInit, OnChanges {
 
   @Input() display: Boolean;
-  @Input() RHST: Production[];
+  @Input() inputGrammar;
   @Output() parseTableStatus = new EventEmitter();
   displayStyle: String = 'none';
   parseTable: any;
@@ -39,9 +39,8 @@ export class ParseTableComponent implements OnInit, OnChanges {
         this.displayStyle = 'none';
       }
     }
-    if (changes.RHST) {
-      console.log(changes.RHST.currentValue);
-      this.parseTable = this.makeParseTable(changes.RHST.currentValue);
+    if (changes.inputGrammar) {
+      this.parseTable = this.makeParseTable(changes.inputGrammar.currentValue);
     }
   }
 
@@ -49,59 +48,24 @@ export class ParseTableComponent implements OnInit, OnChanges {
     this.parseTableStatus.emit(false);
   }
 
-  makeParseTable(RHST: Production[]) {
+  makeParseTable(inputGrammar) {
+    const vLength = inputGrammar.variables.length;
+    const tLength = inputGrammar.terminals.length;
     // tslint:disable-next-line:prefer-const
-    let parseTable;
-    // tslint:disable-next-line:prefer-const
-    let variables: String[] = [];
-    // tslint:disable-next-line:prefer-const
-    let terminals: String[] = [];
-    RHST.forEach(pr => {
-      if (!variables.includes(pr.left)) {
-        variables.push(pr.left);
+    let parseTable = [];
+    // let parseTable[vLength + 1][tLength + 1] = [];
+    for (let j = 0; j < vLength + 1; j++) {
+      parseTable[j] = [];
+      for (let i = 0; i < tLength + 1; i++) {
+        parseTable[j][i] = 0;
       }
-    });
-    console.log(variables);
-    let temps = [];
-    RHST.forEach(pr => {
-      variables.forEach(v => {
-        let temp;
-        temp = pr.right;
-        if (v.indexOf('#') !== -1 && temp.indexOf(v) !== -1) {
-          console.log('1');
-          console.log('\n\n' + temp);
-          // const temp2 =  '/' + v + '/g';
-          // console.log('1*');
-          // console.log('\n\n' + temp2);
-          temp = temp.replace(v, '');
-          // temp.split(v).join('');
-          console.log('2');
-          console.log('\n\n' + temp);
-          temps.push(temp);
-        }
-        // console.log(variables.length);
-      });
-    });
-    // RHST.forEach(pr => {
-    //   variables.forEach(v => {
-    //     let temp;
-    //     temp = pr.right;
-    //     if (temp.indexOf(v) !== -1) {
-    //       console.log('1*');
-    //       console.log('\n\n' + temp);
-    //       // const temp2 =  '/' + v + '/g';
-    //       // console.log('1*');
-    //       // console.log('\n\n' + temp2);
-    //       temp = temp.replace(v, '');
-    //       // temp.split(v).join('');
-    //       console.log('2*');
-    //       console.log('\n\n' + temp);
-    //       temps.push(temp);
-    //     }
-    //     // console.log(variables.length);
-    //   });
-    // });
-    console.log(temps);
+    }
+    for (let j = 1; j < vLength + 1; j++) {
+      parseTable[j][0] = inputGrammar.variables[j - 1];
+    }
+    for (let i = 1; i < tLength + 1; i++) {
+      parseTable[0][i] = inputGrammar.terminals[i - 1];
+    }
     return parseTable;
   }
 }

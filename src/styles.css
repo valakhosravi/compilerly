@@ -10,7 +10,7 @@ body{
 .mi_header {
     background: #1de9b6;
     border-bottom: 3px solid #00bfa5;
-    padding-left: 16px;
+    padding-left: 12px;
     height: calc(100vh / 20);
 }
 
@@ -32,8 +32,8 @@ body{
     border-radius: 50%;
     /* background: #1de9b6;  */
     background: white; 
-    border: 6px solid white;
-    border-top: 6px solid #00bfa5;
+    border: 3px solid white;
+    border-top: 3px solid #00bfa5;
     position: absolute;
     vertical-align: middle;
     align-items: center;
@@ -68,8 +68,8 @@ body{
     border-radius: 50%;
     /* background: #1de9b6;  */
     background: white; 
-    border: 6px solid white;
-    border-top: 6px solid #1de9b6;
+    border: 3px solid white;
+    border-top: 3px solid #1de9b6;
     position: absolute;
     vertical-align: middle;
     align-items: center;

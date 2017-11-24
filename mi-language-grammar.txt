@@ -1,0 +1,47 @@
+P       main() { STS }
+STS     ST STS
+STS     λ
+// declarations
+ST      TY id;
+TY      int
+TY      float
+TY      char
+TY      double
+// assignments
+ST      AST
+AST     id = E AST#
+AST#    == E;
+AST#    ;
+// arithmetics
+E       T E#
+E#      + F E#
+E#      λ
+T       F T#
+T#      * F T#
+T#      λ
+F       (E)
+F       id
+// while
+ST      WST
+WST     while ( BE ) { STS }
+// do while
+ST      DWST
+WST     do { STS } while ( BE )
+// boolean expression
+BE      BT BE#
+BE#     || BT BE#
+BE#     λ
+BT      BF BT#
+BT#     && BF BT#
+BT#     λ
+BF      id BF#
+BF#     T# E# == E
+BF#     λ
+// for
+FST     for ( AST ; BE ; IST ) { STS }
+// if and if else
+IFST    if ( BE ) ST IFST#
+IFST#   else ST
+IFST#   λ
+// increment
+IST     id ++ ;

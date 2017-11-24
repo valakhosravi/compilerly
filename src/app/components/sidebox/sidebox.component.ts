@@ -1,7 +1,7 @@
 import { ProductionComponent } from './production/production.component';
 import { Production } from './../../classes/rule';
 import { Component, OnInit, ViewEncapsulation, ViewChildren, QueryList, AfterViewInit, Output, EventEmitter } from '@angular/core';
-import { ArithmeticGrammar } from './test-grammars';
+import { SBUCSGrammar } from './test-grammars';
 @Component({
   selector: 'app-sidebox',
   templateUrl: './sidebox.component.html',
@@ -18,9 +18,10 @@ export class SideboxComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit() {
-    this.productions = ArithmeticGrammar;
+    this.productions = SBUCSGrammar.productions;
     this.productions = this.indexInputGrammar(this.productions);
-    this.postRHST.emit(this.productions);
+    SBUCSGrammar.productions = this.productions;
+    this.postRHST.emit(SBUCSGrammar);
   }
 
   ngAfterViewInit() {
@@ -45,8 +46,6 @@ export class SideboxComponent implements OnInit, AfterViewInit {
       // productions[i].left = productions[i].left.replace(/(['"])/g, '#');
       // productions[i].right = productions[i].right.replace(/(['"])/g, '#');
     }
-    console.log('productions');
-    console.log(productions);
     return productions;
   }
 
