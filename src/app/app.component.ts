@@ -1,3 +1,4 @@
+import { Production } from './classes/rule';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   parseTableDisplay: Boolean = false;
-
+  productions: Production[];
   showParseTable(e) {
     this.parseTableDisplay = true;
   }
@@ -16,4 +17,7 @@ export class AppComponent {
     this.parseTableDisplay = false;
   }
 
+  getRHST(e) {
+    this.productions = e;
+  }
 }

@@ -11,23 +11,19 @@ import { ArithmeticGrammar } from './test-grammars';
 export class SideboxComponent implements OnInit, AfterViewInit {
   @ViewChildren('cmp') components: QueryList<ProductionComponent>;
   @Output() parseTableStatus: EventEmitter<any> = new EventEmitter();
+  @Output() postRHST: EventEmitter<any> = new EventEmitter();
   counter = 1;
   productions: Production[] = [];
 
   constructor() { }
 
   ngOnInit() {
-    // for (let i = 0; i < 10; i++) {
-    //   this.add();
-    // }
     this.productions = ArithmeticGrammar;
-    for (let i = 0; i < this.productions.length; i++) {
-      this.productions[i].index = i + 1;
-    }
+    this.productions = this.indexInputGrammar(this.productions);
+    this.postRHST.emit(this.productions);
   }
 
   ngAfterViewInit() {
-    console.log(this.components);
   }
 
   add() {
@@ -41,6 +37,17 @@ export class SideboxComponent implements OnInit, AfterViewInit {
 
   showParseTable() {
     this.parseTableStatus.emit(true);
+  }
+
+  indexInputGrammar(productions: Production[]) {
+    for (let i = 0; i < this.productions.length; i++) {
+      productions[i].index = i + 1;
+      // productions[i].left = productions[i].left.replace(/(['"])/g, '#');
+      // productions[i].right = productions[i].right.replace(/(['"])/g, '#');
+    }
+    console.log('productions');
+    console.log(productions);
+    return productions;
   }
 
 }

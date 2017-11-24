@@ -2,26 +2,26 @@ import { Production } from './../../classes/rule';
 export let ArithmeticGrammar: Production[] = [
     {
         left: 'E',
-        right: 'TE\''
+        right: 'TE#'
     },
     {
-        left: 'E\'',
-        right: '+TE\''
+        left: 'E#',
+        right: '+TE#'
     },
     {
-        left: 'E\'',
+        left: 'E#',
         right: 'λ'
     },
     {
         left: 'T',
-        right: 'FT\''
+        right: 'FT#'
     },
     {
-        left: 'T\'',
+        left: 'T#',
         right: '*T'
     },
     {
-        left: 'T\'',
+        left: 'T#',
         right: 'λ'
     },
     {

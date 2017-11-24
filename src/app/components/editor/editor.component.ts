@@ -16,7 +16,6 @@ export class EditorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.editorParent);
     this.editorHeight = this.editorParent.nativeElement.offsetHeight - 20;
   }
 }
