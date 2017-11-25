@@ -51,9 +51,7 @@ export class ParseTableComponent implements OnInit, OnChanges {
   makeParseTable(inputGrammar) {
     const vLength = inputGrammar.variables.length;
     const tLength = inputGrammar.terminals.length;
-    // tslint:disable-next-line:prefer-const
-    let parseTable = [];
-    // let parseTable[vLength + 1][tLength + 1] = [];
+    const parseTable = [];
     for (let j = 0; j < vLength + 1; j++) {
       parseTable[j] = [];
       for (let i = 0; i < tLength + 1; i++) {
@@ -66,6 +64,39 @@ export class ParseTableComponent implements OnInit, OnChanges {
     for (let i = 1; i < tLength + 1; i++) {
       parseTable[0][i] = inputGrammar.terminals[i - 1];
     }
+    // this.calculateFirst(inputGrammar, 'P');
+    this.calculateFirst(inputGrammar, 'STS');
     return parseTable;
+  }
+
+  calculateFirst(inputGrammar, input) {
+    // console.log(input);
+    const firstSet = [];
+    input = input.split(' ');
+    if (this.isVariable(inputGrammar, input[0])) {
+      inputGrammar.productions.forEach(p => {
+        if (p.left === input[0]) {
+          // console.log(p.index);
+          this.calculateFirst(inputGrammar, p.right);
+        }
+      });
+    } else {
+      console.log('---');
+      console.log(input[0]);
+    }
+  }
+
+  isVariable(inputGrammar, input) {
+    let flag = 0;
+    inputGrammar.variables.forEach(v => {
+      if (v === input && flag !== 1) {
+        flag = 1;
+      }
+    });
+    if (flag === 1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

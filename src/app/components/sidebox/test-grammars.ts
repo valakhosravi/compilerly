@@ -6,8 +6,8 @@ export let SBUCSGrammar = {
         'if', 'else'
     ],
     variables: [
-        'P', 'STS', 'ST', 'TY', 'E', 'T', 'E#', 'T#', 'F', 'WST',
-        'BE', 'AST', 'AST#', 'FST', 'IFST', 'IFST#'
+        'P', 'STS', 'ST', 'TY', 'E', 'T', 'E#', 'T#', 'F', 'DWST'
+        , 'WST', 'BE', 'AST', 'AST#', 'FST', 'IFST', 'IFST#'
     ],
     // tokens: [
     //     {}
@@ -83,7 +83,7 @@ export let SBUCSGrammar = {
             left: 'ST', right: 'DWST'
         }
         , {
-            left: 'WST', right: 'do { STS } while ( BE )'
+            left: 'DWST', right: 'do { STS } while ( BE )'
         }
         , {
             left: 'BE', right: 'BT BE#'
@@ -113,7 +113,13 @@ export let SBUCSGrammar = {
             left: 'BF#', right: 'λ'
         }
         , {
+            left: 'ST', right: 'FST'
+        }
+        , {
             left: 'FST', right: 'for ( AST ; BE ; IST ) { STS }'
+        }
+        , {
+            left: 'ST', right: 'IFST'
         }
         , {
             left: 'IFST', right: 'if ( BE ) ST IFST#'
@@ -123,6 +129,9 @@ export let SBUCSGrammar = {
         }
         , {
             left: 'IFST#', right: 'λ'
+        }
+        , {
+            left: 'IST', right: 'FST'
         }
         , {
             left: 'IST', right: 'id ++ ;'
