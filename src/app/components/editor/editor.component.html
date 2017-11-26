@@ -6,16 +6,15 @@
   </a> -->
   <!-- <a class="waves-effect waves-teal btn-flat">Run</a> -->
   <!-- <button id="run-btn">Run</button> -->
-  <a class="waves-effect waves-teal btn-flat" id="run-btn" (click)="run()">
+  <!-- <a class="waves-effect waves-teal btn-flat" id="run-btn" (click)="run()">
     RUN
+  </a> -->
+  <a class="btn-floating waves-effect waves-light" id="run-btn">
+    <i class="mi mi-play-arrow"></i>
   </a>
 </div>
 <div #ep id="editor-parent">
-  <div ace-editor 
-    [(text)]="text"
-    [theme]="'xcode'"
-    [mode]="'c_cpp'"
-    style="height: calc(100% - calc(100vh / 20))">
+  <div ace-editor [(text)]="text" [theme]="'xcode'" [mode]="'c_cpp'" style="height: calc(100% - calc(100vh / 20))">
   </div>
 </div>
 <!-- [style.height.px]="editorHeight"> -->

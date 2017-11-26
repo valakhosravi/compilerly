@@ -15,14 +15,11 @@
 }
 
 #run-btn {
-    float: right;
     color: white;
-    /* margin: 0 2rem;
-    margin-top: 0px;
-    margin-right: 2rem;
-    margin-bottom: 0px;
-    margin-left: 2rem;
-    padding: 0px 10px; */
+    margin: 8px 25px;
+    position: absolute;
+    right: 0;
+    background: #00bfa5;
 }
 
 .mi-icon {
