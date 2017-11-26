@@ -131,9 +131,6 @@ export let SBUCSGrammar = {
             left: 'IFST#', right: 'λ'
         }
         , {
-            left: 'IST', right: 'FST'
-        }
-        , {
             left: 'IST', right: 'id ++ ;'
         }
     ]

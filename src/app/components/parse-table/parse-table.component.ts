@@ -69,7 +69,7 @@ export class ParseTableComponent implements OnInit, OnChanges {
     return parseTable;
   }
 
-  calculateFirst(inputGrammar, input) {
+  calculateFirst(inputGrammar, input, test?) {
     // console.log(input);
     const firstSet = [];
     input = input.split(' ');

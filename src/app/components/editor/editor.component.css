@@ -13,3 +13,23 @@
     left: 0;
     right: 0;
 }
+
+#run-btn {
+    float: right;
+    color: white;
+    /* margin: 0 2rem;
+    margin-top: 0px;
+    margin-right: 2rem;
+    margin-bottom: 0px;
+    margin-left: 2rem;
+    padding: 0px 10px; */
+}
+
+.mi-icon {
+    color: white;
+    padding: 0 2rem;
+    padding-top: 0px;
+    padding-right: 2rem;
+    padding-bottom: 0px;
+    padding-left: 2rem;
+}
