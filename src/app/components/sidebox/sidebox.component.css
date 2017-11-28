@@ -10,6 +10,10 @@
     transform-origin:0% 0%;
     -ms-transform-origin:0% 0%;
     -webkit-transform-origin:0% 0%;
+    -webkit-animation-name: firstAnim; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 3s; /* Safari 4.0 - 8.0 */
+    animation-name: firstAnim;
+    animation-duration: 3s;
 }
 
 #side-bottom:active {
@@ -18,4 +22,17 @@
 
 #side-bottom:hover {
     margin-left: 0px;
+}
+
+@-webkit-keyframes firstAnim {
+    0% {margin-left: -25px;}
+    50% {margin-left: 0px;}
+    100% {margin-left: -25px;}
+}
+
+/* Standard syntax */
+@keyframes firstAnim {
+    0% {margin-left: -25px;}
+    50% {margin-left: 0px;}
+    100% {margin-left: -25px;}
 }
