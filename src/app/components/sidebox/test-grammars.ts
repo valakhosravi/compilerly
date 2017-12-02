@@ -7,7 +7,8 @@ export let SBUCSGrammar = {
     ],
     variables: [
         'P', 'STS', 'ST', 'TY', 'E', 'T', 'E#', 'T#', 'F', 'DWST'
-        , 'WST', 'BE', 'AST', 'AST#', 'FST', 'IFST', 'IFST#'
+        , 'WST', 'BE', 'BE#', 'AST', 'AST#', 'FST', 'IFST', 'IFST#', 'BT'
+        , 'BT#', 'IST', 'BF', 'BF#'
     ],
     // tokens: [
     //     {}
