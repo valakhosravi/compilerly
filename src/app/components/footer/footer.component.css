@@ -22,3 +22,15 @@
     display: block;
     width: 100%;
 }
+
+.footer-end {
+    background: #424242;
+    color: white;
+    padding: 10px 18px;
+}
+
+mi-git {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zd…0yLjYgMTMtOS43IDEzLTE4LjFDNTEgMjEuOSA0Mi41IDEzLjQgMzIgMTMuNHoiLz48L3N2Zz4=);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
