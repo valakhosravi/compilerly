@@ -12,6 +12,7 @@ import { ProductionComponent } from './components/sidebox/production/production.
 import { ParseTableComponent } from './components/parse-table/parse-table.component';
 import { FormsModule } from '@angular/forms';
 import { AceEditorModule } from 'ng2-ace-editor';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AceEditorModule } from 'ng2-ace-editor';
     EditorComponent,
     ConsoleComponent,
     ProductionComponent,
-    ParseTableComponent
+    ParseTableComponent,
+    FooterComponent
   ],
   imports: [
     FormsModule,

@@ -1,0 +1,24 @@
+.footer-countainer {
+    border-collapse: unset;
+    background-color: gray;
+    border-spacing: 15px;
+    table-layout: fixed !important;
+}
+
+.seprator {
+    background-color: darkgray;
+    /* border-bottom: 1px solid lightgray; */
+    /* border-bottom: 3px solid #00bfa5; */
+    height: 3px;
+    width: 100%;
+}
+
+.footer-countainer * {
+    color: white;
+}
+
+.footer-title {
+    border-bottom: 1px solid white;
+    display: block;
+    width: 100%;
+}

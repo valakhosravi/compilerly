@@ -1,7 +1,7 @@
 #side-bottom {
     background: #1de9b6;
     margin-left: -25px;
-    position: fixed;
+    position: absolute;
     top: calc(50% + 95px);
     left: 0;
     -ms-transform: rotate(-90deg); /* IE 9 */
