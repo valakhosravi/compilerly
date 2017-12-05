@@ -24,19 +24,16 @@ export let SBUCSGrammar = {
             left: 'STS', right: 'λ'
         }
         , {
-            left: 'ST', right: 'TY id ;'
+            left: 'ST', right: 'int id;'
         }
         , {
-            left: 'TY', right: 'int'
+            left: 'ST', right: 'float id;'
         }
         , {
-            left: 'TY', right: 'float'
+            left: 'ST', right: 'char id;'
         }
         , {
-            left: 'TY', right: 'char'
-        }
-        , {
-            left: 'TY', right: 'double'
+            left: 'ST', right: 'double id;'
         }
         , {
             left: 'ST', right: 'AST'
