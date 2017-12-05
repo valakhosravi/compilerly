@@ -19,7 +19,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 9;
     cursor: pointer;
 }
@@ -40,13 +40,12 @@
     display: flex;
     background: #1de9b6;
     overflow: overlay;
-    padding: 6px 10px;  
+    padding: 6px 10px;
 }
 
-.header::-webkit-scrollbar { 
-    display: none; 
+.header::-webkit-scrollbar {
+    display: none;
 }
-
 
 .title {
     height: 100%;
@@ -54,7 +53,7 @@
     font-size: 3rem;
     display: inline-block;
     color: white;
-    vertical-align:middle;
+    vertical-align: middle;
     text-align: center;
     display: inline-flex;
     text-decoration: none;
@@ -66,7 +65,17 @@
     margin: 0;
     text-align: center;
 }
+
 #parse-table {
     table-layout: fixed;
     border-collapse: collapse;
+}
+
+@media all and (orientation:portrait) {
+    #table-parent {
+        width: 100%;
+    }
+    #parse-table {
+        width: 200%;
+    }
 }

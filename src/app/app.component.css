@@ -26,8 +26,8 @@
     overflow: overlay;
 }
 
-#menubar::-webkit-scrollbar { 
-    display: none; 
+#menubar::-webkit-scrollbar {
+    display: none;
 }
 
 #sidebox {
@@ -54,4 +54,20 @@
 
 #footer {
     width: 100%;
+}
+
+@media all and (orientation:portrait) {
+    .section {
+        display: block !important;
+        width: 100% !important;
+    }
+    #mainbox {
+        display: block !important;
+        width: 100% !important;
+    }
+    #footer {
+        display: block !important;
+        width: 100% !important;
+        
+    }
 }
