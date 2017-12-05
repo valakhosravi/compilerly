@@ -26,6 +26,7 @@
 .footer-end {
     background: #424242;
     color: white;
+    /* opacity: 0.5; */
     padding: 10px 18px;
 }
 
