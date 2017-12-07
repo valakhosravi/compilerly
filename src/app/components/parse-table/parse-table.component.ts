@@ -120,7 +120,6 @@ export class ParseTableComponent implements OnInit, OnChanges {
     });
     console.log(firstList);
     firstList.forEach(elem => {
-      // console.log(elem);
       this.test.add(elem);
     });
   }

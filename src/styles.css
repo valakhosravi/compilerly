@@ -26,19 +26,32 @@ body{
     margin: 0 !important;
 }
 
-#main-loader {
+#loader-parent {
     width: 20vh;
     height: 20vh;
     border-radius: 50%;
-    /* background: #1de9b6;  */
-    background: white; 
-    border: 3px solid white;
-    border-top: 3px solid #00bfa5;
+    background: #424242; 
     position: absolute;
     vertical-align: middle;
     align-items: center;
     top: 40vh;
     left: calc(50% - 10vh);
+    display: flex;
+}
+
+#main-loader {
+    width: 15vh;
+    height: 15vh;
+    border-radius: 50%;
+    border: 3px solid #00bfa5;
+    border-left: 3px solid #424242;
+    /* position: absolute; */
+    vertical-align: middle;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+    /* top: 5vh;
+    left: calc(50% - 10vh); */
     animation: rotation 2s infinite linear;
     -webkit-animation: rotation 2s infinite linear;
 }
@@ -63,18 +76,20 @@ body{
 }
 
 #main-loader > div {
-    width: 20vh;
-    height: 20vh;
+    width: 10vh;
+    height: 10vh;
     border-radius: 50%;
     /* background: #1de9b6;  */
-    background: white; 
-    border: 3px solid white;
-    border-top: 3px solid #1de9b6;
-    position: absolute;
+    border: 3px solid #1de9b6;
+    border-right: 3px solid #424242;
+    /* position: absolute; */
     vertical-align: middle;
     align-items: center;
+    position: absolute;
+    top: 2vh;
+    left: 2vh;
     /* top: 40vh; */
-    left: calc(50% - 10vh);
+    /* left: calc(50% - 10vh); */
     animation: rotation1 1s infinite linear;
     -webkit-animation: rotation1 1s infinite linear;
 }
@@ -85,7 +100,7 @@ body{
             -webkit-transform: rotate(0deg);
     }
     to {
-            -webkit-transform: rotate(359deg);
+            -webkit-transform: rotate(-359deg);
     }
 }
 
@@ -94,6 +109,6 @@ body{
             -webkit-transform: rotate(0deg);
     }
     to {
-            -webkit-transform: rotate(359deg);
+            -webkit-transform: rotate(-359deg);
     }
 }
