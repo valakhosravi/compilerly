@@ -70,7 +70,7 @@ export class ParseTableComponent implements OnInit, OnChanges {
 
     // this.calculateFirst1(this.inputGrammar, this.inputGrammar.productions[1], [], []);
     console.log('first set');
-    console.log(this.calculateFirst1(this.inputGrammar, this.inputGrammar.productions[1], [], []));
+    console.log(this.calculateFirst1(this.inputGrammar, this.inputGrammar.productions[1], [], new Set()));
     console.log('after');
     console.log(this.test);
 
@@ -104,41 +104,23 @@ export class ParseTableComponent implements OnInit, OnChanges {
   }
 
   calculateFirst1(grammar, production, pathList, firstList) {
-    // const nullAble = this.isNullAble(grammar, production);
     const temp: string[] = production.right.split(' ');
-    // console.log('temp');
-    // console.log(temp);
     if (this.isVariable(grammar, temp[0])) {
-      // console.log('here');
       pathList.push(production);
-      // if (nullAble) {
-      //   // console.log('here');
-      //   pathList.push(production);
-      // }
     }
-    // console.log('here');
-
-    // console.log('pathList1');
-    // console.log(Object.assign([], pathList));
-
     grammar.productions.forEach(p => {
       if (this.isVariable(grammar, temp[0])) {
         if (p.left === temp[0]) {
-          // console.log('if');
-          // console.log(p);
           this.calculateFirst1(grammar, p, pathList, firstList);
         }
       } else {
-        // console.log('else');
-        // console.log(firstList);
-        firstList.push(temp[0]);
+        firstList.add(temp[0]);
         pathList.pop();
       }
     });
-    // console.log('firstList');
-    // console.log('firstList');
-    // console.log(firstList);
+    console.log(firstList);
     firstList.forEach(elem => {
+      // console.log(elem);
       this.test.add(elem);
     });
   }
