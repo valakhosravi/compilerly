@@ -27,6 +27,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
   scanner(str) {
     const tokens = [];
     let value = '';
+    // remove new lines from string
+    str = str.replace(/(\r\n|\n|\r)/gm, '');
     for (let i = 0; i < str.length; i++) {
       // console.log(str[i]);
       if (str[i] !== ' ') {
@@ -37,6 +39,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
             type: this.findTokenType(value)
           });
           value = '';
+        } else {
+          console.log(value);
         }
       } else {
         value = '';
@@ -46,13 +50,42 @@ export class EditorComponent implements OnInit, AfterViewInit {
   }
 
   findTokenType(value) {
-    // console.log(value);
     switch (value) {
       case 'main':
+        return 'KW';
+      case 'int':
+        return 'KW';
+      case 'float':
+        return 'KW';
+      case 'char':
+        return 'KW';
+      case 'double':
+        return 'KW';
+      case 'while':
+        return 'KW';
+      case 'do':
         return 'KW';
       case '(':
         return 'ST';
       case ')':
+        return 'ST';
+      case '{':
+        return 'ST';
+      case '}':
+        return 'ST';
+      case '||':
+        return 'ST';
+      case '&&':
+        return 'ST';
+      case '++':
+        return 'ST';
+      case '+':
+        return 'ST';
+      case '*':
+        return 'ST';
+      case '=':
+        return 'ST';
+      case ';':
         return 'ST';
       default:
         return false;
