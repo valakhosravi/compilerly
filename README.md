@@ -1,6 +1,6 @@
 # Demo
 
-Check out [here](https://valakhosravi.github.io/complierly/) 
+Check out [here](https://valakhosravi.github.io/compilerly/) 
 
 # Compilerly
 
