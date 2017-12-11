@@ -1,7 +1,7 @@
 import { Production } from './../../classes/rule';
 export let SBUCSGrammar = {
     terminals: [
-        'main', '(', ')', '{' , '}', 'id', 'int', 'float', 'char',
+        'main', '(', ')', '{' , '}', 'id', 'num', 'int', 'float', 'char',
         'double', '+', '*',  ';', '=', '==', '++', 'do', 'while',
         'if', 'else'
     ],
@@ -10,9 +10,6 @@ export let SBUCSGrammar = {
         , 'WST', 'BE', 'BE#', 'AST', 'AST#', 'FST', 'IFST', 'IFST#', 'BT'
         , 'BT#', 'IST', 'BF', 'BF#'
     ],
-    // tokens: [
-    //     {}
-    // ],
     productions: [
         {
             left: 'P', right: 'main ( ) { STS }'
@@ -70,6 +67,9 @@ export let SBUCSGrammar = {
         }
         , {
             left: 'F', right: 'id'
+        }
+        , {
+            left: 'F', right: 'num'
         }
         , {
             left: 'ST', right: 'WST'
