@@ -3,7 +3,7 @@ export let SBUCSGrammar = {
     terminals: [
         'main', '(', ')', '{' , '}', 'id', 'num', 'int', 'float', 'char',
         'double', '+', '*',  ';', '=', '==', '++', 'do', 'while',
-        'if', 'else'
+        'if', 'else', '|', '&'
     ],
     variables: [
         'P', 'STS', 'ST', 'TY', 'E', 'T', 'E#', 'T#', 'F', 'DWST'

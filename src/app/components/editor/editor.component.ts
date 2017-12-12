@@ -8,6 +8,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '
 })
 export class EditorComponent implements OnInit, AfterViewInit {
   @ViewChild('ep') editorParent;
+  @ViewChild('editor') editor;
   text: String = '';
   editorHeight = 312;
   constructor() { }
@@ -53,15 +54,21 @@ export class EditorComponent implements OnInit, AfterViewInit {
         value = '';
       }
     }
-    console.log('-----------------');
+    // find numbers in tokens
     tokens.forEach(t => {
       if (t.type === 'id') {
         if (this.isNumber(t.value)) {
-          console.log(t);
           t.type = 'num';
         }
       }
     });
+    // find ++ , == , -- , && and ||
+    for (let i = 1; i < tokens.length; i++) {
+      if (tokens[i].value === tokens[i - 1].value) {
+        tokens[i - 1].value = tokens[i - 1].value + tokens[i - 1].value;
+        tokens.splice(i, 1);
+      }
+    }
     console.log(tokens);
   }
 
@@ -107,47 +114,53 @@ export class EditorComponent implements OnInit, AfterViewInit {
         return 'ST';
       case ';':
         return 'ST';
+      case '|':
+        return 'ST';
+      case '&':
+        return 'ST';
       default:
         return false;
     }
   }
 
   isNumber(str) {
-    let flag = false;
+    let flag = true;
     for (let i = 0; i < str.length; i++) {
-      switch (str[i]) {
-        case '1':
-          flag = true;
-          break;
-        case '2':
-          flag = true;
-          break;
-        case '3':
-          flag = true;
-          break;
-        case '4':
-          flag = true;
-          break;
-        case '5':
-          flag = true;
-          break;
-        case '6':
-          flag = true;
-          break;
-        case '7':
-          flag = true;
-          break;
-        case '8':
-          flag = true;
-          break;
-        case '9':
-          flag = true;
-          break;
-        case '0':
-          flag = true;
-          break;
-        default:
-          break;
+      if (flag) {
+        switch (str[i]) {
+          case '1':
+            flag = true;
+            break;
+          case '2':
+            flag = true;
+            break;
+          case '3':
+            flag = true;
+            break;
+          case '4':
+            flag = true;
+            break;
+          case '5':
+            flag = true;
+            break;
+          case '6':
+            flag = true;
+            break;
+          case '7':
+            flag = true;
+            break;
+          case '8':
+            flag = true;
+            break;
+          case '9':
+            flag = true;
+            break;
+          case '0':
+            flag = true;
+            break;
+          default:
+            flag = false;
+        }
       }
     }
     return flag;
