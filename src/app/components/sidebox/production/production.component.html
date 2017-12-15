@@ -1,18 +1,20 @@
 <!-- <table class="z-depth-1" style="border-radius: 15px; margin-bottom: 15px; margin-top: 15px;"> -->
-<table>
+<table class="sidebox-production z-depth-1">
   <tbody>
     <tr>
-      <td>
+      <td class="sidebox-production-index">
         <b>{{production.index}}</b>
       </td>
       <td>
-        <input [(ngModel)]="production.left" type="text" class="mi-input" style="text-transform:uppercase;width: 40px" />
+        <!-- <input [(ngModel)]="production.left" type="text" class="mi-input" style="text-transform:uppercase;width: 40px" /> -->
+        <span style="width: 40px; display: block;margin-left: 10px">{{production.left}}</span>
       </td>
       <td>
         <i class="mi mi-arrow-forward" style="margin-left: 2px !important;"></i>
       </td>
       <td>
-        <input [(ngModel)]="production.right" type="text" class="mi-input" />
+        <span style="display: block;width: 180px;margin-left: 10px">{{production.right}}</span>
+        <!-- <input [(ngModel)]="production.right" type="text" class="mi-input" /> -->
       </td>
     </tr>
   </tbody>

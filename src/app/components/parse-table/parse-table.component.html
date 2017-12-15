@@ -9,7 +9,7 @@
     </h2>
   </div>
   <!-- <a href=""></a> -->
-  <div style="height: 100%;overflow-y: scroll">
+  <div style="height: 100%; position: relative; overflow-y: scroll">
     <table id="parse-table">
       <tbody>
         <tr *ngFor="let j of parseTable">
@@ -19,6 +19,7 @@
         </tr>
       </tbody>
     </table>
+    <div style="height: 100px"></div>    
   </div>
 </div>
 <a id="block" [style.display]="displayStyle" (click)="hideBlock()"></a>

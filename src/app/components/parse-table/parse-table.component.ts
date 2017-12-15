@@ -68,7 +68,6 @@ export class ParseTableComponent implements OnInit, OnChanges {
       parseTable[0][i] = inputGrammar.terminals[i - 1];
     }
 
-    // this.calculateFirst1(this.inputGrammar, this.inputGrammar.productions[1], [], []);
     console.log('first set');
     console.log(this.calculateFirst1(this.inputGrammar, this.inputGrammar.productions[1], [], new Set()));
     console.log('after');

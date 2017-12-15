@@ -1,0 +1,13 @@
+.sidebox-production{
+    display: block;
+    margin: 10px 0px;
+    border-radius: 3px;
+}
+
+.sidebox-production-index{
+    background-color: #64ffda;
+    border-right: 1px solid #1de9b6;
+    margin: 0px 5px;
+    width: 30px;
+    text-align:center; 
+}

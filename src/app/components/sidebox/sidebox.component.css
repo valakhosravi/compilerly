@@ -19,6 +19,7 @@
     /* Safari 4.0 - 8.0 */
     animation-name: firstAnim;
     animation-duration: 5s;
+    display: none;
 }
 
 #side-bottom:active {
@@ -51,6 +52,7 @@
         height: 55px;
         border-radius: 100px;
         opacity: 0.8;
+        display: block;
     }
     #btn-text {
         display: none;
@@ -60,4 +62,17 @@
         margin: 0 auto;
         margin-right: -8px;
     }
+    .btn-coutainer {
+        display: none;
+    }
+}
+
+.btn-coutainer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(30% - 1px);
+    background-color: white;
+    padding: 10px;
+    border-top: 1px solid #00bfa5;
 }

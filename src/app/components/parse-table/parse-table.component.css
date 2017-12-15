@@ -63,6 +63,7 @@
 
 .parse-table-cell {
     margin: 0;
+    /* padding: 5px; */
     text-align: center;
 }
 
