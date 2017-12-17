@@ -1,0 +1,17 @@
+#console-body {
+  padding: 0px 14px;
+  height: calc(100% - (100vh / 20));
+  overflow-y: scroll;
+}
+
+.message {
+  word-wrap: break-word;
+  border-radius: 3px;
+  border: 1px solid #64ffda;
+  margin: 10px 0px;
+  padding: 4px 8px;
+}
+
+.scanned-item {
+  color: #f57f17;
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '@angular/core';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-editor',
@@ -9,6 +11,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '
 export class EditorComponent implements OnInit, AfterViewInit {
   @ViewChild('ep') editorParent;
   @ViewChild('editor') editor;
+  @Output() postMessage = new EventEmitter<any>();
   text: String = '';
   editorHeight = 312;
   constructor() { }
@@ -69,6 +72,12 @@ export class EditorComponent implements OnInit, AfterViewInit {
         tokens.splice(i, 1);
       }
     }
+    // tokens.unshift({
+    //   type: '',
+    //   value: 'The scanner result'
+    // });
+    this.postMessage.emit(tokens);
+
     console.log(tokens);
   }
 

@@ -69,9 +69,73 @@ export class ParseTableComponent implements OnInit, OnChanges {
     }
 
     console.log('first set');
-    console.log(this.calculateFirst1(this.inputGrammar, this.inputGrammar.productions[1], [], new Set()));
+    // console.log(this.calculateFirst1(this.inputGrammar, this.inputGrammar.productions[1], [], new Set()));
+    const firstSets = [];
+    this.inputGrammar.productions.forEach(p => {
+      this.calculateFirst1(this.inputGrammar, p, [], new Set());
+      const arr = [];
+      this.test.forEach(t => {
+        arr.push(t);
+      });
+      for (let i = 0; i < this.test.size; i++) {
+        this.test[i] = {
+          index: p.index,
+          value: arr[i]
+        };
+      }
+      firstSets.push({
+        variable: p.left,
+        firstSet: this.test
+      });
+      this.test = new Set();
+    });
+    console.log('---');
+    console.log(firstSets);
+    console.log('---');
+
+    const array = [];
+    firstSets.forEach(fs => {
+      array.push(fs);
+    });
+
+    // compine found sets
+    const temp = [];
+    for (let j = 0; j < firstSets.length; j++) {
+      const fs = [];
+      let v;
+      for (let i = 0; i < firstSets.length; i++) {
+        if (firstSets[j].variable === firstSets[i].variable) {
+          v = firstSets[i].variable;
+          for (let z = 0; z < array[i].firstSet.size; z++) {
+            fs.push(array[i].firstSet[z]);
+          }
+        }
+      }
+      temp.push({
+        variable: v,
+        firstSet: fs
+      });
+    }
+
+    // remove repeated elements
+    const clear = [];
+    temp.forEach(t => {
+      let flag  = true;
+      clear.forEach(c => {
+        if (c.variable === t.variable) {
+          console.log('never');
+          flag = false;
+        }
+      });
+      if (flag) {
+        clear.push(t);
+      }
+    });
+
+
+    console.log(temp);
     console.log('after');
-    console.log(this.test);
+    console.log(clear);
 
     return parseTable;
   }
@@ -114,10 +178,13 @@ export class ParseTableComponent implements OnInit, OnChanges {
         }
       } else {
         firstList.add(temp[0]);
+        if (pathList.length !== 0) {
+          // console.log(Object.assign([], pathList));
+        }
         pathList.pop();
       }
     });
-    console.log(firstList);
+    // console.log(firstList);
     firstList.forEach(elem => {
       this.test.add(elem);
     });

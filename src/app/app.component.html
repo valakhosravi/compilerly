@@ -8,10 +8,10 @@
   </div>
   <div id="mainbox">
     <div id="editor" class="section">
-      <app-editor></app-editor>
+      <app-editor (postMessage)="getMessage($event)"></app-editor>
     </div>
     <div id="console" class="section">
-      <app-console></app-console>
+      <app-console [messages]="message"></app-console>
     </div>
   </div>
   <div id="footer">

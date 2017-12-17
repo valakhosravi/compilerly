@@ -1,3 +1,13 @@
 <div class="mi_header">
   <label>Console</label>
 </div>
+<div id="console-body">
+  <ul>
+    <li *ngIf="messages.length > 0" style="color: #f57f17">
+      The scanner result:
+    </li>
+    <li class="message" *ngFor="let item of messages">
+      <span class="scanned-item">{{item.type}}</span>: {{item.value}}
+    </li>
+  </ul>
+</div>

@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   parseTableDisplay: Boolean = false;
   productions: Production[];
+  message = [];
   showParseTable(e) {
     this.parseTableDisplay = true;
   }
@@ -19,5 +20,11 @@ export class AppComponent {
 
   getRHST(e) {
     this.productions = e;
+  }
+
+  getMessage(msg) {
+    console.log('msg');
+    console.log(msg);
+    this.message = msg;
   }
 }

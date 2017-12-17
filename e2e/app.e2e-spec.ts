@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('compilerly App', () => {
+describe('test-env App', () => {
   let page: AppPage;
 
   beforeEach(() => {
