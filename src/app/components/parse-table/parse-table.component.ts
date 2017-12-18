@@ -68,7 +68,6 @@ export class ParseTableComponent implements OnInit, OnChanges {
       parseTable[0][i] = inputGrammar.terminals[i - 1];
     }
 
-    console.log('first set');
     // console.log(this.calculateFirst1(this.inputGrammar, this.inputGrammar.productions[1], [], new Set()));
     const firstSets = [];
     this.inputGrammar.productions.forEach(p => {
@@ -89,9 +88,6 @@ export class ParseTableComponent implements OnInit, OnChanges {
       });
       this.test = new Set();
     });
-    console.log('---');
-    console.log(firstSets);
-    console.log('---');
 
     const array = [];
     firstSets.forEach(fs => {
@@ -123,7 +119,6 @@ export class ParseTableComponent implements OnInit, OnChanges {
       let flag  = true;
       clear.forEach(c => {
         if (c.variable === t.variable) {
-          console.log('never');
           flag = false;
         }
       });
@@ -133,9 +128,17 @@ export class ParseTableComponent implements OnInit, OnChanges {
     });
 
 
-    console.log(temp);
-    console.log('after');
     console.log(clear);
+
+    // initilizing parseTable for clear firsts without landa
+    // for (let j = 0; j < vLength + 1; j++) {
+    //   for (let i = 0; i < tLength + 1; i++) {
+    //     // parseTable[j][i] = 0;
+    //     for (let z = 0; z < clear.length; z++) {
+
+    //     }
+    //   }
+    // }
 
     return parseTable;
   }

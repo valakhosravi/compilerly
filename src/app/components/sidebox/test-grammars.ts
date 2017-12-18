@@ -2,11 +2,11 @@ import { Production } from './../../classes/rule';
 export let SBUCSGrammar = {
     terminals: [
         'main', '(', ')', '{' , '}', 'id', 'num', 'int', 'float', 'char',
-        'double', '+', '*',  ';', '=', '==', '++', 'do', 'while',
-        'if', 'else', '|', '&'
+        'double', '+', '*',  ';', '=', '==', '<=', '>=', '++', 'do', 'while',
+        'if', 'else', '||', '&&', '$'
     ],
     variables: [
-        'P', 'STS', 'ST', 'TY', 'E', 'T', 'E#', 'T#', 'F', 'DWST'
+        'P', 'STS', 'ST', 'E', 'T', 'E#', 'T#', 'F', 'DWST'
         , 'WST', 'BE', 'BE#', 'AST', 'AST#', 'FST', 'IFST', 'IFST#', 'BT'
         , 'BT#', 'IST', 'BF', 'BF#'
     ],
@@ -102,10 +102,15 @@ export let SBUCSGrammar = {
             left: 'BT#', right: 'λ'
         }
         , {
-            left: 'BF', right: 'id BF#'
+            left: 'BF', right: 'E BF#'
         }
         , {
-            left: 'BF#', right: 'T# E# == E'
+            left: 'BF#', right: '== E'
+        }
+        , {
+            left: 'BF#', right: '<= E'
+        }, {
+            left: 'BF#', right: '>= E'
         }
         , {
             left: 'BF#', right: 'λ'

@@ -31,11 +31,12 @@ export class EditorComponent implements OnInit, AfterViewInit {
     const tokens = [];
     let value = '';
     // remove new lines, space and tab from string
-    str = str.replace(/(\r\n|\n|\r)/gm, '');
-    str = str.replace(/\t/g, '');
-    str = str.replace(/\s/g, '');
+    str = str.replace(/(\r\n|\n|\r)/gm, ' ');
+    str = str.replace(/\t/g, ' ');
+    str = str.replace(/\s/g, ' ');
     console.log(str);
     for (let i = 0; i < str.length; i++) {
+      console.log(value);
       if (str[i] !== ' ') {
         value += str[i];
         if (this.findTokenType(value)) {
@@ -46,6 +47,13 @@ export class EditorComponent implements OnInit, AfterViewInit {
           value = '';
         } else {
           if (str[i + 1] && this.findTokenType(str[i + 1]) && !this.findTokenType(value)) {
+            tokens.push({
+              value: value,
+              type: 'id'
+            });
+            value = '';
+          }
+          if (str[i + 1] && str[i + 1] === ' ' && !this.findTokenType(value)) {
             tokens.push({
               value: value,
               type: 'id'
@@ -65,13 +73,34 @@ export class EditorComponent implements OnInit, AfterViewInit {
         }
       }
     });
-    // find ++ , == , -- , && and ||
+    // find ++ , == , -- , && and || , <= , >=
     for (let i = 1; i < tokens.length; i++) {
-      if (tokens[i].value === tokens[i - 1].value) {
-        tokens[i - 1].value = tokens[i - 1].value + tokens[i - 1].value;
-        tokens.splice(i, 1);
+      if (
+        tokens[i].value === '+' ||
+        tokens[i].value === '-' ||
+        tokens[i].value === '=' ||
+        tokens[i].value === '&' ||
+        tokens[i].value === '|'
+      ) {
+        if (tokens[i].value === tokens[i - 1].value && tokens[i].value.length === 1) {
+          tokens[i - 1].value = tokens[i - 1].value + tokens[i - 1].value;
+          tokens.splice(i, 1);
+        }
+      }
+
+      console.log(tokens[i - 1].value);
+      console.log('3');
+      if (tokens[i - 1].value === '<' || tokens[i - 1].value === '>') {
+        console.log('2');
+        if (tokens[i] && tokens[i].value === '=') {
+          console.log('1');
+          tokens[i - 1].value = tokens[i - 1].value + tokens[i].value;
+          tokens[i - 1].type = 'ST';
+          tokens.splice(i, 1);
+        }
       }
     }
+
     // tokens.unshift({
     //   type: '',
     //   value: 'The scanner result'
@@ -113,6 +142,10 @@ export class EditorComponent implements OnInit, AfterViewInit {
         return 'ST';
       case '&&':
         return 'ST';
+      case '<=':
+        return 'ST';
+      case '>=':
+        return 'ST';
       case '++':
         return 'ST';
       case '+':
@@ -126,6 +159,10 @@ export class EditorComponent implements OnInit, AfterViewInit {
       case '|':
         return 'ST';
       case '&':
+        return 'ST';
+      case '>':
+        return 'ST';
+      case '<':
         return 'ST';
       default:
         return false;
