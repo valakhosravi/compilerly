@@ -4,7 +4,7 @@
   overflow-y: scroll;
 }
 
-.message {
+.s-message {
   word-wrap: break-word;
   border-radius: 3px;
   border: 1px solid #64ffda;
@@ -12,6 +12,18 @@
   padding: 4px 8px;
 }
 
+.p-message {
+  word-wrap: break-word;
+  border-radius: 3px;
+  border: 1px solid green;
+  margin: 10px 0px;
+  padding: 4px 8px;
+}
+
 .scanned-item {
   color: #f57f17;
+}
+
+.parsed-item {
+  color: green;
 }

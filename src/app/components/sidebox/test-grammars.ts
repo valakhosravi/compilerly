@@ -3,7 +3,7 @@ export let SBUCSGrammar = {
     terminals: [
         'main', '(', ')', '{' , '}', 'id', 'num', 'int', 'float', 'char',
         'double', '+', '*',  ';', '=', '==', '<=', '>=', '++', 'do', 'while',
-        'if', 'else', '||', '&&', '$'
+        'for', 'if', 'else', '||', '&&', '$'
     ],
     variables: [
         'P', 'STS', 'ST', 'E', 'T', 'E#', 'T#', 'F', 'DWST'
@@ -21,25 +21,28 @@ export let SBUCSGrammar = {
             left: 'STS', right: 'λ'
         }
         , {
-            left: 'ST', right: 'int id;'
+            left: 'ST', right: 'int id ;'
         }
         , {
-            left: 'ST', right: 'float id;'
+            left: 'ST', right: 'float id ;'
         }
         , {
-            left: 'ST', right: 'char id;'
+            left: 'ST', right: 'char id ;'
         }
         , {
-            left: 'ST', right: 'double id;'
+            left: 'ST', right: 'double id ;'
         }
         , {
             left: 'ST', right: 'AST'
         }
         , {
-            left: 'AST', right: 'id = E AST#'
+            left: 'AST', right: 'id = AST#'
         }
         , {
-            left: 'AST#', right: '== E ;'
+            left: 'AST#', right: '= E ;'
+        }
+        , {
+            left: 'AST#', right: 'E ;'
         }
         , {
             left: 'AST#', right: ';'
@@ -119,7 +122,7 @@ export let SBUCSGrammar = {
             left: 'ST', right: 'FST'
         }
         , {
-            left: 'FST', right: 'for ( AST ; BE ; IST ) { STS }'
+            left: 'FST', right: 'for ( AST BE ; IST ) { STS }'
         }
         , {
             left: 'ST', right: 'IFST'

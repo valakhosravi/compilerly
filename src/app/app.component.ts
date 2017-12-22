@@ -9,7 +9,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   parseTableDisplay: Boolean = false;
   productions: Production[];
-  message = [];
+  smessage = [];
+  pmessage = [];
+  parseTable = [];
   showParseTable(e) {
     this.parseTableDisplay = true;
   }
@@ -23,8 +25,14 @@ export class AppComponent {
   }
 
   getMessage(msg) {
-    console.log('msg');
-    console.log(msg);
-    this.message = msg;
+    this.smessage = msg;
+  }
+
+  getMessage1(msg) {
+    this.pmessage = msg;
+  }
+
+  getParseTable(ps) {
+    this.parseTable = ps;
   }
 }

@@ -4,14 +4,16 @@
   </div>
   <div id="sidebox" class="section">
     <app-sidebox (parseTableStatus)="showParseTable($event)" (postRHST)="getRHST($event)"></app-sidebox>
-    <app-parse-table [display]="parseTableDisplay" [inputGrammar]="productions" (parseTableStatus)="hideParseTable($event)"></app-parse-table>
+    <app-parse-table [display]="parseTableDisplay" [inputGrammar]="productions" (parseTableStatus)="hideParseTable($event)"
+    (postParseTable)="getParseTable($event)" 
+    ></app-parse-table>
   </div>
   <div id="mainbox">
     <div id="editor" class="section">
-      <app-editor (postMessage)="getMessage($event)"></app-editor>
+      <app-editor [inputGrammar]="productions" [parseTable]="parseTable" (postMessage)="getMessage($event)" (postMessage1)="getMessage1($event)"></app-editor>
     </div>
     <div id="console" class="section">
-      <app-console [messages]="message"></app-console>
+      <app-console [smessages]="smessage" [pmessages]="pmessage"></app-console>
     </div>
   </div>
   <div id="footer">

@@ -2,12 +2,36 @@
   <label>Console</label>
 </div>
 <div id="console-body">
-  <ul>
-    <li *ngIf="messages.length > 0" style="color: #f57f17">
+  <!-- <ul *ngIf="messages.value && messages.value.length > 0">
+    <li style="color: #f57f17">
       The scanner result:
     </li>
-    <li class="message" *ngFor="let item of messages">
-      <span class="scanned-item">{{item.type}}</span>: {{item.value}}
+    <li class="s-message" *ngFor="let item of messages.value">
+      <span *ngIf="messages.out === 'scanner'" class="scanned-item">{{item.type}}</span>: {{item.value}}
+    </li>
+  </ul> -->
+  <ul *ngIf="messages.value && messages.value.length > 0">
+    <li style="color: #f57f17">
+      The scanner result:
+    </li>
+    <li *ngFor="let item of messages.value">
+      <span *ngIf="messages.out === 'scanner'">{{item.type}}</span>: {{item.value}}
+    </li>
+  </ul>
+  <ul *ngIf="messages.out === 'error'">
+    <li style="color: red">
+      Error:
+    </li>
+    <li class="e-message">
+      {{messages.message}}
+    </li>
+  </ul>
+  <ul *ngIf="messages.out === 'parser'">
+    <li style="color: green">
+      Parser result:
+    </li>
+    <li class="e-message">
+      {{messages.message}}
     </li>
   </ul>
 </div>

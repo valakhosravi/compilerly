@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnChanges, SimpleChanges } from '@angular/core';
 // import { Input } from '@angular/core';
 import { Input } from '@angular/core';
 @Component({
@@ -8,11 +8,20 @@ import { Input } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
   // tslint:disable-next-line:use-input-property-decorator
 })
-export class ConsoleComponent implements OnInit {
-  @Input() messages: any[];
+export class ConsoleComponent implements OnInit, OnChanges {
+  @Input() smessages;
+  messages: any = {};
+  @Input() pmessages: any[];
   constructor() { }
 
   ngOnInit() {
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+    if (!changes.smessages.firstChange) {
+      this.messages = changes.smessages.currentValue;
+      console.log(this.messages);
+    }
+  }
 }

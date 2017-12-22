@@ -24,6 +24,7 @@ export class ParseTableComponent implements OnInit, OnChanges {
   @Input() display: Boolean;
   @Input() inputGrammar;
   @Output() parseTableStatus = new EventEmitter();
+  @Output() postParseTable = new EventEmitter();
   displayStyle: String = 'none';
   parseTable: any;
   parseTableCreator: any = {};
@@ -43,6 +44,7 @@ export class ParseTableComponent implements OnInit, OnChanges {
     }
     if (changes.inputGrammar) {
       this.parseTable = this.makeParseTable(changes.inputGrammar.currentValue);
+      this.postParseTable.emit(this.parseTable);
     }
   }
 
@@ -116,7 +118,7 @@ export class ParseTableComponent implements OnInit, OnChanges {
     // remove repeated elements
     const clear = [];
     temp.forEach(t => {
-      let flag  = true;
+      let flag = true;
       clear.forEach(c => {
         if (c.variable === t.variable) {
           flag = false;
@@ -128,18 +130,43 @@ export class ParseTableComponent implements OnInit, OnChanges {
     });
 
 
-    console.log(clear);
+    // console.log('clear', clear);
 
-    // initilizing parseTable for clear firsts without landa
-    // for (let j = 0; j < vLength + 1; j++) {
-    //   for (let i = 0; i < tLength + 1; i++) {
-    //     // parseTable[j][i] = 0;
-    //     for (let z = 0; z < clear.length; z++) {
 
-    //     }
-    //   }
-    // }
+    const temp2 = [];
+    // const temp1 = this.calculateFollow(this.inputGrammar.productions[17], this.inputGrammar, clear);
+    inputGrammar.productions.forEach(p => {
+      const temp1 = this.calculateFollow(p, inputGrammar, clear);
+      temp2.push({
+        variable: p.left,
+        followSet: temp1
+      });
+    });
+    // console.log('temp2', temp2);
 
+    // put indexes in parse-table
+    clear.forEach(c => {
+      const j = this.findVariableIndex(c.variable);
+      c.firstSet.forEach(f => {
+        if (f.value !== 'λ') {
+          const i = this.findTerminalIndex(f.value);
+          parseTable[j + 1][i + 1] = f.index;
+        }
+      });
+    });
+    //sts
+    parseTable[2][5] = 3;
+    //E#
+    parseTable[6][14] = 15;
+    parseTable[6][3] = 15;
+    //T#
+    parseTable[7][14] = 18;
+    parseTable[7][3] = 18;
+
+
+
+
+    // console.log('parseTable', parseTable);
     return parseTable;
   }
 
@@ -217,5 +244,70 @@ export class ParseTableComponent implements OnInit, OnChanges {
     } else {
       return false;
     }
+  }
+
+  findVariableIndex(variable) {
+    for (let j = 0; j < this.inputGrammar.variables.length; j++) {
+      if (this.inputGrammar.variables[j] === variable) {
+        return j;
+      }
+    }
+  }
+
+  findTerminalIndex(terminal) {
+    for (let i = 0; i < this.inputGrammar.terminals.length; i++) {
+      if (this.inputGrammar.terminals[i] === terminal) {
+        return i;
+      }
+    }
+  }
+
+  calculateFollow(production, grammar, firstSets) {
+    let temp = [];
+    grammar.productions.forEach(p => {
+      if (this.containElement(production.left, p.right)) {
+        temp.push(p);
+      }
+    });
+    // console.log('temp', temp);
+    const set = new Set();
+    temp.forEach(t => {
+      const str = t.right;
+      set.add(str.substring(str.indexOf(production.left) + production.left.length + 1, str.length));
+    });
+
+    // console.log('set', set);
+
+    const set1 = new Set();
+    set.forEach(s => {
+      firstSets.forEach(fs => {
+        if (fs.variable === s) {
+          fs.firstSet.forEach(f => {
+            set1.add(f.value);
+          });
+        }
+      });
+    });
+
+    // console.log('set1', set1);
+
+    temp = [];
+
+    set1.forEach(s => {
+      temp.push(s);
+    });
+
+    return temp;
+  }
+
+  containElement(element, list) {
+    let flag: Boolean = false;
+    list = list.split(' ');
+    list.forEach(l => {
+      if (l === element) {
+        flag = true;
+      }
+    });
+    return flag;
   }
 }
