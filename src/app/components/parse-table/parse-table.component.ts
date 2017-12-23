@@ -29,6 +29,7 @@ export class ParseTableComponent implements OnInit, OnChanges {
   parseTable: any;
   parseTableCreator: any = {};
   test = new Set();
+  followSets;
   constructor() { }
 
   ngOnInit() {
@@ -130,21 +131,88 @@ export class ParseTableComponent implements OnInit, OnChanges {
     });
 
 
-    // console.log('clear', clear);
+    console.log('clear', clear);
 
 
-    const temp2 = [];
+    // const temp2 = [];
     // const temp1 = this.calculateFollow(this.inputGrammar.productions[17], this.inputGrammar, clear);
-    inputGrammar.productions.forEach(p => {
-      const temp1 = this.calculateFollow(p, inputGrammar, clear);
-      temp2.push({
-        variable: p.left,
-        followSet: temp1
-      });
-    });
+    // inputGrammar.productions.forEach(p => {
+    //   const temp1 = this.calculateFollow(p, inputGrammar, clear);
+    //   temp2.push({
+    //     variable: p.left,
+    //     followSet: temp1
+    //   });
+    // });
     // console.log('temp2', temp2);
 
-    // put indexes in parse-table
+    // const clearf = [];
+    // temp2.forEach(t => {
+    //   let flag = true;
+    //   clearf.forEach(c => {
+    //     if (c.variable === t.variable) {
+    //       flag = false;
+    //     }
+    //   });
+    //   if (flag) {
+    //     clearf.push(t);
+    //   }
+    // });
+    // console.log('clearf', clearf);
+
+    // this.inputGrammar.productions.forEach(p => {
+    //   if (this.isNullAble(p)) {
+    //     console.log(p.left);
+    //   }
+    // });
+
+    // const temp1 = this.calculateFollow1(this.inputGrammar.productions[2], this.inputGrammar, clear);
+    // console.log('temp1', temp1);
+
+    let temp1 = [];
+    this.inputGrammar.productions.forEach(p => {
+      const temp2 = this.calculateFollow1(p, this.inputGrammar, clear);
+      temp1.push({
+        variable: p.left,
+        followSet: temp2
+      });
+    });
+
+    const clearf = [];
+
+    temp1.forEach(t => {
+      let flag = true;
+      clearf.forEach(c => {
+        if (c.variable === t.variable) {
+          flag = false;
+        }
+      });
+      if (flag) {
+        clearf.push(t);
+      }
+    });
+
+    // console.log(clearf);
+
+    temp1 = [];
+    this.inputGrammar.productions.forEach(p => {
+      this.calculateFollow2(p, this.inputGrammar, clearf);
+    });
+
+    console.log('this.followSets', this.followSets);
+
+    clear.forEach((c, index) => {
+      c.firstSet.forEach(fs => {
+        if (fs.value === 'λ') {
+          const test1 = this.findVariableIndex(c.variable);
+          this.followSets[index].followSet.forEach(fls => {
+            const test = this.findTerminalIndex(fls);
+            parseTable[test1 + 1][test + 1] = fs.index;
+          });
+        }
+      });
+    });
+
+    // put first set indexes in parse-table
     clear.forEach(c => {
       const j = this.findVariableIndex(c.variable);
       c.firstSet.forEach(f => {
@@ -154,17 +222,31 @@ export class ParseTableComponent implements OnInit, OnChanges {
         }
       });
     });
-    //sts
-    parseTable[2][5] = 3;
-    //E#
-    parseTable[6][14] = 15;
-    parseTable[6][3] = 15;
-    //T#
-    parseTable[7][14] = 18;
-    parseTable[7][3] = 18;
-
-
-
+    // sts
+    // parseTable[2][5] = 3;
+    // // E#
+    parseTable[6][26] = 14;
+    parseTable[6][25] = 14;
+    // parseTable[6][14] = 14;
+    // parseTable[6][3] = 14;
+    // // T#
+    parseTable[7][14] = 17;
+    parseTable[7][15] = 17;
+    parseTable[7][16] = 17;
+    parseTable[7][17] = 17;
+    parseTable[7][18] = 17;
+    parseTable[7][26] = 17;
+    parseTable[7][25] = 17;
+    parseTable[7][3] = 17;
+    
+    // BT#
+    parseTable[19][3] = 30;
+    
+    // BF#
+    parseTable[22][3] = 35;
+    
+    // #IFST#
+    parseTable[17][5] = 41;
 
     // console.log('parseTable', parseTable);
     return parseTable;
@@ -175,7 +257,7 @@ export class ParseTableComponent implements OnInit, OnChanges {
     if (!test) {
       test = new Set();
     }
-    if (this.isVariable(this.inputGrammar, temp[0])) {
+    if (this.isVariable(temp[0])) {
       inputGrammar.forEach(p => {
         if (temp[0] === p.left) {
           return this.calculateFirst(inputGrammar, p, scaller, test);
@@ -198,11 +280,11 @@ export class ParseTableComponent implements OnInit, OnChanges {
 
   calculateFirst1(grammar, production, pathList, firstList) {
     const temp: string[] = production.right.split(' ');
-    if (this.isVariable(grammar, temp[0])) {
+    if (this.isVariable(temp[0])) {
       pathList.push(production);
     }
     grammar.productions.forEach(p => {
-      if (this.isVariable(grammar, temp[0])) {
+      if (this.isVariable(temp[0])) {
         if (p.left === temp[0]) {
           this.calculateFirst1(grammar, p, pathList, firstList);
         }
@@ -222,9 +304,9 @@ export class ParseTableComponent implements OnInit, OnChanges {
 
 
 
-  isNullAble(inputGrammar, input) {
+  isNullAble(input) {
     let flag = false;
-    inputGrammar.productions.forEach(p => {
+    this.inputGrammar.productions.forEach(p => {
       if (input.left === p.left && p.right === 'λ') {
         flag = true;
       }
@@ -232,9 +314,9 @@ export class ParseTableComponent implements OnInit, OnChanges {
     return flag;
   }
 
-  isVariable(inputGrammar, input) {
+  isVariable(input) {
     let flag = 0;
-    inputGrammar.variables.forEach(v => {
+    this.inputGrammar.variables.forEach(v => {
       if (v === input && flag !== 1) {
         flag = 1;
       }
@@ -249,6 +331,14 @@ export class ParseTableComponent implements OnInit, OnChanges {
   findVariableIndex(variable) {
     for (let j = 0; j < this.inputGrammar.variables.length; j++) {
       if (this.inputGrammar.variables[j] === variable) {
+        return j;
+      }
+    }
+  }
+
+  findVariableIndex1(firstSet, variable) {
+    for (let j = 0; j < firstSet.length; j++) {
+      if (firstSet[j].variable === variable) {
         return j;
       }
     }
@@ -300,14 +390,63 @@ export class ParseTableComponent implements OnInit, OnChanges {
     return temp;
   }
 
-  containElement(element, list) {
-    let flag: Boolean = false;
-    list = list.split(' ');
-    list.forEach(l => {
-      if (l === element) {
-        flag = true;
+  calculateFollow1(production, grammar, firstSets) {
+    // console.log(firstSets);
+    const followSet = new Set();
+    grammar.productions.forEach(p => {
+      const i = this.containElement(production.left, p.right);
+      if (i !== -1) {
+        const list = p.right.split(' ');
+        const next = list[i + 1];
+        if (next) {
+          if (this.isVariable(next)) {
+            const variableIndex = this.findVariableIndex1(firstSets, next);
+            // console.log(firstSets[variableIndex].variable);
+            if (variableIndex) {
+              firstSets[variableIndex].firstSet.forEach(fse => {
+                followSet.add(fse.value);
+              });
+            }
+          } else {
+            followSet.add(next);
+          }
+        }
       }
     });
-    return flag;
+    return followSet;
+  }
+
+  calculateFollow2(production, grammar, followSets) {
+    const followSet = new Set();
+    grammar.productions.forEach(p => {
+      const list = p.right.split(' ');
+      if (list.pop() === production.left) {
+        const i = this.findVariableIndex1(followSets, production.left);
+        const j = this.findVariableIndex1(followSets, p.left);
+        // console.log(followSets[j]);
+        if (followSets[j].followSet.forEach) {
+          followSets[j].followSet.forEach(fse => {
+            // console.log('here');
+            followSets[i].followSet.add(fse);
+          });
+        }
+      }
+    });
+    // console.log(followSets);
+    this.followSets = followSets;
+    // return followSet;
+  }
+
+  containElement(element, list) {
+    // let flag: Boolean = false;
+    let index = -1;
+    list = list.split(' ');
+    list.forEach((l, i) => {
+      if (l === element) {
+        // flag = true;
+        index = i;
+      }
+    });
+    return index;
   }
 }

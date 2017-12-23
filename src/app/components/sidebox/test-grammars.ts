@@ -33,20 +33,20 @@ export let SBUCSGrammar = {
             left: 'ST', right: 'double id ;'
         }
         , {
-            left: 'ST', right: 'AST'
+            left: 'ST', right: 'AST ;'
         }
         , {
             left: 'AST', right: 'id = AST#'
         }
         , {
-            left: 'AST#', right: '= E ;'
+            left: 'AST#', right: '= E'
         }
         , {
-            left: 'AST#', right: 'E ;'
+            left: 'AST#', right: 'E'
         }
-        , {
-            left: 'AST#', right: ';'
-        }
+        // , {
+        //     left: 'AST#', right: '
+        // }
         , {
             left: 'E', right: 'T E#'
         }
@@ -122,13 +122,13 @@ export let SBUCSGrammar = {
             left: 'ST', right: 'FST'
         }
         , {
-            left: 'FST', right: 'for ( AST BE ; IST ) { STS }'
+            left: 'FST', right: 'for ( AST ; BE ; IST ) { STS }'
         }
         , {
             left: 'ST', right: 'IFST'
         }
         , {
-            left: 'IFST', right: 'if ( BE ) ST IFST#'
+            left: 'IFST', right: 'if ( BE ) { STS } IFST#'
         }
         , {
             left: 'IFST#', right: 'else ST'
