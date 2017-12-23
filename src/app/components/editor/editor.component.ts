@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '
 import { Output, Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Token } from '../../classes/token';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-editor',
@@ -240,7 +241,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
     let flag = false;
     // console.log(this.inputGrammar);
     this.inputGrammar.variables.forEach(v => {
-      // console.log(input);
+      console.log(input);
       // console.log(v);
       if (v === input) {
         flag = true;
@@ -262,7 +263,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
     while (true) {
       const top_ps = parseStack[parseStack.length - 1];
       console.log(parseStack);
-      console.log(parseStack.length);
+      console.log(top_ps);
+      console.log(token);
       if (parseStack.length === 1) {
         console.log(2);
         if (token.value && token.value === '$') {
@@ -293,6 +295,14 @@ export class EditorComponent implements OnInit, AfterViewInit {
           console.log(1);
           const j = this.findVariableIndex(top_ps) + 1;
           const i = this.findTerminalIndex(token.value) + 1;
+          if (this.parseTable[j][i] === 0) {
+            this.postMessage.emit({
+              out: 'error',
+              message: 'Invalid expression found in line: ' + this.lineIndex
+            });
+            break;
+          }
+          console.log('ParseTable', this.parseTable[j][i]);
           // console.log(j);
           // console.log(i);
           // console.log(this.inputGrammar.productions[+this.parseTable[j][i] - 1]);
@@ -312,14 +322,18 @@ export class EditorComponent implements OnInit, AfterViewInit {
           if (top_ps === token.value) {
             parseStack.pop();
             token = this.scanner1();
-          } else {
-            // console.log('error');
-            this.postMessage.emit({
-              out: 'error',
-              message: top_ps + ' expected but token is ' + token.value
-            });
+            continue;
           }
+          console.log('error');
+          this.postMessage.emit({
+            out: 'error',
+            message: '\"' + top_ps + '\" expected but token is \"' + token.value + '\" in line: ' + this.lineIndex
+          });
+          break;
         }
+      } else {
+        console.log('else');
+        token = this.scanner1();
       }
     }
     console.log('tokens', tokens);
@@ -490,7 +504,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
         while (this.ch !== '\n') {
           this.read();
         }
-        return;
+        // return;
       }
       // else if (this.ch === '*') {
       //   console.log(1);
