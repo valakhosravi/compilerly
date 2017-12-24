@@ -20,7 +20,7 @@ export class ConsoleComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (!changes.smessages.firstChange) {
       this.messages = changes.smessages.currentValue;
-      console.log(this.messages);
+      // console.log(this.messages);
     }
   }
 }

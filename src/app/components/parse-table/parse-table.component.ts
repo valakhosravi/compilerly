@@ -131,7 +131,7 @@ export class ParseTableComponent implements OnInit, OnChanges {
     });
 
 
-    console.log('clear', clear);
+    // console.log('clear', clear);
 
 
     // const temp2 = [];
@@ -198,7 +198,7 @@ export class ParseTableComponent implements OnInit, OnChanges {
       this.calculateFollow2(p, this.inputGrammar, clearf);
     });
 
-    console.log('this.followSets', this.followSets);
+    // console.log('this.followSets', this.followSets);
 
     clear.forEach((c, index) => {
       c.firstSet.forEach(fs => {
@@ -241,6 +241,7 @@ export class ParseTableComponent implements OnInit, OnChanges {
     
     // BT#
     parseTable[19][3] = 30;
+    parseTable[19][14] = 30;
     
     // BF#
     parseTable[22][3] = 35;

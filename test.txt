@@ -1,0 +1,22 @@
+// compilerly test code
+main() {
+    int a; // variable declaration int
+    float b; // variable declaration float
+    char c; // variable declaration char
+    double d; // variable declaration double
+    b = 10;
+    for (i = 0; i <= 100; i++) { // for statement and increment
+        if ( i >= 50 && d <= 1000 || b == 100) { // if statement and boolean expression
+            d = ((i*b)+3)*2+1; // arithmetic expression
+        } else { // else
+            b = (i+b);
+        }
+    }
+    do { // do-while statement 
+        b = d*2;
+    } while (b <= 100)
+    
+    while (d == c) { // while statement
+        a = a + 1;
+    }
+}

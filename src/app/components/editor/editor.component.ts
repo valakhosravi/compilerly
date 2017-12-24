@@ -241,7 +241,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
     let flag = false;
     // console.log(this.inputGrammar);
     this.inputGrammar.variables.forEach(v => {
-      console.log(input);
+      // console.log(input);
       // console.log(v);
       if (v === input) {
         flag = true;
@@ -262,11 +262,10 @@ export class EditorComponent implements OnInit, AfterViewInit {
     token = this.scanner1();
     while (true) {
       const top_ps = parseStack[parseStack.length - 1];
-      console.log(parseStack);
-      console.log(top_ps);
-      console.log(token);
+      // console.log(top_ps);
+      // console.log(token);
       if (parseStack.length === 1) {
-        console.log(2);
+        // console.log(2);
         if (token.value && token.value === '$') {
           console.log('Accept');
           this.postMessage.emit({
@@ -283,7 +282,11 @@ export class EditorComponent implements OnInit, AfterViewInit {
         }
       }
       if (token) {
-        console.log('token.value', token.value);
+        console.log(
+          token,
+          parseStack
+        );
+        // console.log('token.value', token.value);
         tokens.push(token);
         if (token.type === 'id') {
           token.value = 'id';
@@ -292,7 +295,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
           token.value = 'num';
         }
         if (this.isVariable(top_ps)) {
-          console.log(1);
+          // console.log(1);
           const j = this.findVariableIndex(top_ps) + 1;
           const i = this.findTerminalIndex(token.value) + 1;
           if (this.parseTable[j][i] === 0) {
@@ -302,10 +305,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
             });
             break;
           }
-          console.log('ParseTable', this.parseTable[j][i]);
-          // console.log(j);
-          // console.log(i);
-          // console.log(this.inputGrammar.productions[+this.parseTable[j][i] - 1]);
+          // console.log('ParseTable', this.parseTable[j][i]);
           let vars = this.inputGrammar.productions[+this.parseTable[j][i] - 1].right;
           if (vars === 'λ') {
             parseStack.pop();
@@ -318,13 +318,13 @@ export class EditorComponent implements OnInit, AfterViewInit {
             });
           }
         } else {
-          console.log(3);
+          // console.log(3);
           if (top_ps === token.value) {
             parseStack.pop();
             token = this.scanner1();
             continue;
           }
-          console.log('error');
+          // console.log('error');
           this.postMessage.emit({
             out: 'error',
             message: '\"' + top_ps + '\" expected but token is \"' + token.value + '\" in line: ' + this.lineIndex
@@ -332,11 +332,11 @@ export class EditorComponent implements OnInit, AfterViewInit {
           break;
         }
       } else {
-        console.log('else');
+        // console.log('else');
         token = this.scanner1();
       }
     }
-    console.log('tokens', tokens);
+    // console.log('tokens', tokens);
     // if (!this.error) {
     //   this.postMessage.emit({
     //     out: 'scanner',
@@ -538,9 +538,9 @@ export class EditorComponent implements OnInit, AfterViewInit {
         });
       }
     }
-    console.log(this.ch);
+    // console.log(this.ch);
     this.read();
-    console.log(this.ch);
+    // console.log(this.ch);
     this.error = true;
     this.postMessage.emit({
       out: 'error',

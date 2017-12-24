@@ -131,13 +131,13 @@ export let SBUCSGrammar = {
             left: 'IFST', right: 'if ( BE ) { STS } IFST#'
         }
         , {
-            left: 'IFST#', right: 'else ST'
+            left: 'IFST#', right: 'else { STS }'
         }
         , {
             left: 'IFST#', right: 'λ'
         }
         , {
-            left: 'IST', right: 'id ++ ;'
+            left: 'IST', right: 'id ++'
         }
     ]
 };
