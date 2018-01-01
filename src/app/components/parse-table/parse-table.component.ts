@@ -222,34 +222,6 @@ export class ParseTableComponent implements OnInit, OnChanges {
         }
       });
     });
-    // sts
-    // parseTable[2][5] = 3;
-    // // E#
-    parseTable[6][26] = 14;
-    parseTable[6][25] = 14;
-    // parseTable[6][14] = 14;
-    // parseTable[6][3] = 14;
-    // // T#
-    parseTable[7][14] = 17;
-    parseTable[7][15] = 17;
-    parseTable[7][16] = 17;
-    parseTable[7][17] = 17;
-    parseTable[7][18] = 17;
-    parseTable[7][26] = 17;
-    parseTable[7][25] = 17;
-    parseTable[7][3] = 17;
-    
-    // BT#
-    parseTable[19][3] = 30;
-    parseTable[19][14] = 30;
-    
-    // BF#
-    parseTable[22][3] = 35;
-    
-    // #IFST#
-    parseTable[17][5] = 41;
-
-    // console.log('parseTable', parseTable);
     return parseTable;
   }
 
